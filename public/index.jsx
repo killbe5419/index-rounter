@@ -42,7 +42,7 @@ class FormattedDate extends React.Component {
         const date = this.props.date;
         const year =  date.getFullYear().toString();
         const month = check(date.getMonth()+1,2);
-        const day = check(date.getUTCDate(),2);
+        const day = check(date.getDate(),2);
         const hour = check(date.getHours(),2);
         const minute = check(date.getMinutes(),2);
         const second = check(date.getSeconds(),2);
