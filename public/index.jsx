@@ -21,12 +21,16 @@ class Hello extends React.Component {
 
 class ShowWorks extends React.Component {
     render() {
+        let list = this.props.content.link.map( x =>
+            <div>
+                <a href={ x.url }>Click here to Enter { x.description } version</a>
+                <br />
+            </div>
+        )
         return (
             <div className="show">
                 <p>Project: { this.props.content.name }</p>
-                <a href={ this.props.content.link[0].url }>Click here to Enter { this.props.content.link[0].description } version</a>
-                <br/>
-                <a href={ this.props.content.link[1].url }>Click here to Enter { this.props.content.link[1].description } version</a>
+                { list }
             </div>
         );
     }
@@ -201,19 +205,35 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            content: {
-                name: "pickCardFgo",
-                link: [
-                    {
-                        description: "Vue",
-                        url:"http://pickcard.net-labo.icu:2334"
-                    },
-                    {
-                        description: "React",
-                        url:"http://pickcard.net-labo.icu:2333"
-                    }
-                ]
-            }
+            content: [
+                {
+                    name: "pickCardFgo",
+                    link: [
+                        {
+                            description: "Vue",
+                            url:"http://pickcard.net-labo.icu:2334"
+                        },
+                        {
+                            description: "React",
+                            url:"http://pickcard.net-labo.icu:2333"
+                        }
+                    ]
+                },
+                {
+                    name: "ArkMelon",
+                    link: [
+                        {
+                            description: "React",
+                            url:"http://pickcard.net-labo.icu:3333"
+                        },
+                        {
+                            description: "NotReady",
+                            url:"/"
+                        }
+                    ]
+                },
+
+            ]
         }
     }
     render() {
@@ -221,7 +241,8 @@ class App extends React.Component {
             <div>
                 <Hello />
                 <Clock />
-                <ShowWorks content={ this.state.content }/>
+                <ShowWorks content={ this.state.content[0] }/>
+                <ShowWorks content={ this.state.content[1] } />
             </div>
         )
     }

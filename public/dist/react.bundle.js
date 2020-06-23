@@ -557,13 +557,12 @@ class Hello extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
 class ShowWorks extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   render() {
+    let list = this.props.content.link.map(x => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: x.url
+    }, "Click here to Enter ", x.description, " version"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "show"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Project: ", this.props.content.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: this.props.content.link[0].url
-    }, "Click here to Enter ", this.props.content.link[0].description, " version"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: this.props.content.link[1].url
-    }, "Click here to Enter ", this.props.content.link[1].description, " version"));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Project: ", this.props.content.name), list);
   }
 
 }
@@ -573,7 +572,7 @@ class FormattedDate extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compone
     const date = this.props.date;
     const year = date.getFullYear().toString();
     const month = check(date.getMonth() + 1, 2);
-    const day = check(date.getUTCDate(), 2);
+    const day = date.getUTCDate();
     const hour = check(date.getHours(), 2);
     const minute = check(date.getMinutes(), 2);
     const second = check(date.getSeconds(), 2);
@@ -722,7 +721,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: {
+      content: [{
         name: "pickCardFgo",
         link: [{
           description: "Vue",
@@ -731,13 +730,24 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
           description: "React",
           url: "http://pickcard.net-labo.icu:2333"
         }]
-      }
+      }, {
+        name: "ArkMelon",
+        link: [{
+          description: "React",
+          url: "http://pickcard.net-labo.icu:3333"
+        }, {
+          description: "NotReady",
+          url: "/"
+        }]
+      }]
     };
   }
 
   render() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Hello, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Clock, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ShowWorks, {
-      content: this.state.content
+      content: this.state.content[0]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ShowWorks, {
+      content: this.state.content[1]
     }));
   }
 
